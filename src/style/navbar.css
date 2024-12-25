@@ -1,0 +1,106 @@
+/* navbar  */
+.navbar {
+  padding: 5px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(58, 227, 227);
+}
+.nav-logo {
+  width: 50px;
+}
+
+.nav-ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.navbar a {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.nav-left {
+  display: flex;
+}
+
+.nav-right {
+  background-color: aquamarine;
+  padding: 4px 16px;
+  border-radius: 10px;
+}
+.nav-right a {
+  color: black;
+}
+
+.link-active {
+  color: rgb(255, 68, 0);
+  font-weight: bold;
+}
+
+.link {
+  color: black;
+}
+.btn-hamburger {
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 4px 10px;
+  background-color: aquamarine;
+}
+.nav-option {
+  position: relative;
+  padding: 8px;
+  background: rgb(58, 227, 227);
+  border-radius: 10px;
+  /* box-shadow: rgba(0, 255, 247, 0.5); */
+}
+.nav-option {
+  position: absolute;
+  top: 50px;
+  right: 5px;
+  z-index: 10;
+}
+.nav-option ul {
+  padding: 0;
+  list-style: none;
+  text-align: end;
+}
+.nav-option a {
+  margin-top: 10px;
+}
+
+.nav-option a:hover {
+  color: rgb(0, 145, 255);
+}
+
+.menuHide {
+  display: none;
+}
+
+/* end navbar  */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 780px) {
+  .navbar {
+    padding: 5px 10px;
+  }
+  .nav-ul {
+    display: none;
+  }
+  .nav-right {
+    padding: 4px 16px;
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 780px) {
+  .btn-nav {
+    display: none;
+  }
+  .nav-option {
+    display: none;
+  }
+}

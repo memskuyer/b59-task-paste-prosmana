@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/assets/images/image.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" href="../assets/images/cat.png" />
+    <link rel="stylesheet" href="../style/navbar.css" />
+    <link rel="stylesheet" href="../style/contact.css" />
+  </head>
+  <body>
+    {{>navbar}}
+
+    <form id="handleForm">
+      <h1>Contact Me</h1>
+      <div class="form-fields">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          class="form-input"
+          id="name"
+          placeholder="Masukkan Name" />
+      </div>
+
+      <div class="form-fields">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          class="form-input"
+          id="email"
+          placeholder="Masukkan Email" />
+      </div>
+
+      <div class="form-fields">
+        <label for="phoneNumber">Phone</label>
+        <input
+          type="number"
+          name="number"
+          class="form-input"
+          id="phoneNumber"
+          placeholder="Masukkan Phone Number" />
+      </div>
+
+      <div class="form-fields">
+        <label for="subject">Subject</label>
+        <input
+          type="text"
+          name="subject"
+          class="form-input"
+          id="subject"
+          placeholder="Masukkan Subject" />
+      </div>
+
+      <div class="form-fields">
+        <label for="skill">Skill</label>
+        <select name="skill" class="form-input" id="skill">
+          <option value="Front-End Dev">Front-End</option>
+          <option value="Back-End Dev">Back-End</option>
+        </select>
+      </div>
+
+      <div class="form-fields">
+        <label for="message">Your Message</label>
+        <textarea
+          name="message"
+          rows="5"
+          class="form-input"
+          id="message"
+          placeholder="message"></textarea>
+      </div>
+      <div class="button-fields">
+        <button type="submit" class="button-submit">Submit</button>
+      </div>
+    </form>
+  </body>
+  <script src="/javascript/contact.js"></script>
+  <!-- <script src="../js/basic-javascript.js"></script> -->
+  <script src="/javascript/navbar.js"></script>
+</html>

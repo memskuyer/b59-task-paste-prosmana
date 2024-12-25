@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/assets/images/image.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../style/navbar.css" />
+    <link rel="stylesheet" href="../../style/task/MyProject.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <title>Test Belajar</title>
+  </head>
+  <body>
+    <main>
+     {{>navbar currenPage = 'myproject'}}
+      <section class="section-one">
+        <div class="container" id="addProject">
+          <div class="content">
+            <form class="form-input" action="/testbelajar" method="post">
+              <h1>Add My Project</h1>
+              <!-- name  -->
+              <div class="form-fields">
+                <label for="name">Project Name</label>
+                <input
+                  class="form-input-fields"
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Masukkan Name.." />
+              </div>
+              <!-- end name  -->
+              <!-- grid  -->
+              <div class="grid-form">
+                <!-- 1  -->
+                <div>
+                  <div class="form-fields">
+                    <label for="startDate">Start Date</label>
+                    <input
+                      class="form-input-fields"
+                      type="date"
+                      id="startDate"
+                      name="startDate" />
+                  </div>
+                </div>
+                <!-- end 1  -->
+                <!-- 2  -->
+                <div>
+                  <div class="form-fields">
+                    <label for="endDate">End Date</label>
+                    <input
+                      class="form-input-fields"
+                      type="date"
+                      id="endDate"
+                      name="endDate" />
+                  </div>
+                </div>
+                <!-- end 2  -->
+              </div>
+              <!-- end grid  -->
+              <!-- text area  -->
+              <div class="form-fields">
+                <label for="description">Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="5"
+                  class="form-input-fields"
+                  placeholder="Description"></textarea>
+              </div>
+              <!-- end text area  -->
+              <!-- teknologi  -->
+              <label style="font-weight: bold">Technologies</label>
+              <div class="grid-form">
+                <div>
+                  <input
+                    type="checkbox"
+                    id="nodejs"
+                    name="nodejs"
+                    value="NodeJs" />
+                  <label for="nodejs"> Node Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="reactjs"
+                    name="reactjs"
+                    value="ReactJs" />
+                  <label for="reactjs"> React Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="nextjs"
+                    name="nextjs"
+                    value="NextJs" />
+                  <label for="nextjs">Next Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="typescript"
+                    name="typescript"
+                    value="TypeScript" />
+                  <label for="typescript"> typescript</label>
+                </div>
+              </div>
+              <!-- Endteknologi  -->
+              <!-- image  -->
+              <div class="form-fields">
+                <label for="">Upload Images</label>
+                <input
+                  class="form-input-fields"
+                  type="file"
+                  hidden
+                  id="upload-images"
+                  name="images" />
+                  {{!-- name="upload-images" /> --}}
+                <label for="upload-images">
+                  <div class="label-form-image">
+                    <p class="label-p">Chose</p>
+                    <img src="../../assets/images/attach.png" alt="" />
+                  </div>
+                </label>
+              </div>
+              <!-- end image  -->
+              <!-- button  -->
+              <div class="btn-group">
+                <button type="submit" class="btn-submit">submit</button>
+              </div>
+              <!-- end button  -->
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="section-two" id="my-project">
+        <h1>MY PROJECT</h1>
+        <h1>
+          <a
+            href="#addProject"
+            style="
+              text-decoration: none;
+              border: 1px solid black;
+              padding: 4px 10px;
+              border-radius: 10px;
+              background: cyan;
+            "
+            >+</a
+          >
+        </h1>
+        <div class="content-two" id="listProject">
+          {{#each data}}
+          <div class="card">
+            <img src="/assets/images/{{this.images}}" alt="" class="img-hero" />
+            <a
+              href="/project-detail/{{@index}}"
+              style="text-decoration: none; color: black">
+              <h2>{{this.name}}</h2>
+            </a>
+            <p>20/12/2024 | {{this.author}}</p>
+            <p>
+              deskripsi
+              <span>
+                {{this.description}}
+              </span>
+            </p>
+            <p>{{this.technology}}</p>
+            <div class="btn-section-two">
+              <button class="btn-edit">edit</button>
+
+              <form action="/testbelajar/{{@index}}?_method=DELETE" method="POST">
+
+                <button class="btn-delete">Delete</button>
+              
+              </form>
+              {{!-- <form action="/deleteMyProject/{{@index}}?_method=DELETE" method="POST">
+                <button style="background-color: red; width: 250%; padding:10px; color:white; border-radius:10px" onclick="return confirm('Delete id: {{@index}}')">Delete</button>
+              </form> --}}
+            </div>
+          </div>
+          {{else}}
+          <p>Tidak Ada konten</p>
+          {{/each}}
+        </div>
+      </section>
+    </main>
+    {{!-- <script src="/javascript/myproject.js"></script> --}}
+    <script src="/javascript/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+.bg-c-cyan {
+    background: rgb(58, 227, 227);
+  }
+  .bg-c-cyan1 {
+    background: #7bd3ea;
+  }
+  .bg-c-cyan2 {
+    background: #53cfee;
+  }
+  
+  @keyframes borderAnimation {
+    0% {
+      border-color: #8b5cf6 #06b6d4 #f43f5e #ec4899; /* Violet, Cyan, Rose, Pink */
+    }
+    25% {
+      border-color: #06b6d4 #f43f5e #ec4899 #8b5cf6; /* Cyan, Rose, Pink, Violet */
+    }
+    50% {
+      border-color: #f43f5e #ec4899 #8b5cf6 #06b6d4; /* Rose, Pink, Violet, Cyan */
+    }
+    75% {
+      border-color: #ec4899 #8b5cf6 #06b6d4 #f43f5e; /* Pink, Violet, Cyan, Rose */
+    }
+    100% {
+      border-color: #8b5cf6 #06b6d4 #f43f5e #ec4899; /* Kembali ke awal */
+    }
+  }
+  
+  .animate-border {
+    animation: borderAnimation 3s linear infinite;
+    border-style: solid;
+    border-width: 6px;
+    border-radius: 0.5rem;
+  }
+  

@@ -1,0 +1,54 @@
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="/">
+        <img
+          class="nav-logo"
+          src="/assets/images/image.png"
+          alt="logo-navbars" />
+      </a>
+      <ul class="nav-ul">
+        <li>
+          <a href="/" class=" {{#if (equal currenPage 'home')}} active link-active {{else}}link {{/if}}">Home</a>
+        </li>
+        <li>
+          <a href="/blog" class="{{#if (equal currenPage 'blog')}} active link-active {{else}}link{{/if}}">Blog</a>
+        </li>
+        <li>
+          <a href="/MyProject#my-project" class="{{#if (equal currenPage 'myproject')}} active link-active {{else}}link{{/if}}"
+            >My Project</a
+          >
+        </li>
+        <li>
+          <a href="/testimonial" class="{{#if (equal currenPage 'testimonial')}} active link-active {{else}}link{{/if}}"
+            >Testimonials</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="nav-option">
+      <ul id="menu-list" class="menuHide">
+        <li>
+          <a href="/" class="link-active">Homes</a>
+        </li>
+        <li>
+          <a href="/blog" class="link">Blog</a>
+        </li>
+        <li>
+          <a href="/MyProject#my-project" class="link"
+            >My Project</a
+          >
+        </li>
+        <li>
+          <a href="/contact" class="link">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="/contact">Contact Me</a>
+    </div>
+    <div class="btn-nav">
+      <button type="button" id="nav-btn" class="btn-hamburger">
+        <i class="fa-solid fa-burger"></i>
+      </button>
+    </div>
+  </nav>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/assets/images/image.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../style/navbar.css" />
+    <link rel="stylesheet" href="../../style/task/detail-project.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <title>Detail Blog</title>
+  </head>
+  <body>
+    {{>navbar}}
+    <div class="content">
+      <div class="hero-content" id="hero-content">
+        <div class="content-one">
+          <h1>{{data.projectName}}</h1>
+          <p style="font-size: 20px">
+            Author: {{data.author}}  <br />
+            <span style="font-size: 15px">Durasi: 3 Bulan (Belum Diubah)</span>
+          </p>
+          <p>
+            {{data.description}}
+          </p>
+          <p>
+            Technology <br />
+            <span style="font-size: 30px">
+              <img src="/assets/images/{{img.[0]}}" style="width: 50px; color:white; border-radius:50%" onerror="this.style.display='none'"/>
+              <img src="/assets/images/{{img.[1]}}" style="width: 50px; color:white; border-radius:50%" onerror="this.style.display='none'"/>
+              <img src="/assets/images/{{img.[2]}}" style="width: 50px; color:white; border-radius:50%" onerror="this.style.display='none'"/>
+              <img src="/assets/images/{{img.[3]}}" style="width: 50px; color:white; border-radius:50%" onerror="this.style.display='none'"/>
+            </span>
+          </p>
+        </div>
+        <div class="content-two">
+          <img src="../../assets/images/{{data.images}}" alt="images" />
+        </div>
+      </div>
+    </div>
+    {{!-- <script src="/javascript/detailproject.js"></script> --}}
+    <script src="/javascript/navbar.js"></script>
+  </body>
+</html>
