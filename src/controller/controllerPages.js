@@ -1,4 +1,6 @@
 let arrBelajar = [];
+let datas = [];
+
 const config = require("../config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
 
@@ -10,11 +12,50 @@ const renderHome = (req, res) => {
 
 const renderBlog = async (req, res) => {
   const query = `SELECT * FROM public."Blogs"`;
-  const blog = await sequelize.query(query, {
-    type: QueryTypes.SELECT,
-  });
+  const blog = await sequelize.query(query, { type: QueryTypes.SELECT });
 
   res.render("blog", { data: blog });
+};
+
+const renderAddBlog = (req, res) => {
+  res.render("add-blog");
+};
+
+const getDetailBlogId = async (req, res) => {
+  const { id } = req.params;
+
+  const query = `SELECT * FROM public."Blogs" WHERE id = ${id}`;
+  const blog = await sequelize.query(query, { type: QueryTypes.SELECT });
+  console.log(blog);
+
+  res.render("detail-blog", { data: blog[0] });
+};
+
+const getBlogId = async (req, res) => {
+  const { id } = req.params;
+  const query = `SELECT * FROM public."Blogs" WHERE id = ${id}`;
+  const blog = await sequelize.query(query, { type: QueryTypes.SELECT });
+  console.log(blog);
+
+  res.render("edit-blog", { data: blog[0] });
+};
+
+const editBlogWithId = async (req, res) => {
+  const { id } = req.params;
+  const img = req.query.image;
+
+  let { title, content, images } = req.body;
+
+  if (images == "") {
+    images = img;
+  }
+
+  const query = `UPDATE public."Blogs" SET title = :title, content = :content, image = :images WHERE id = ${id}`;
+  await sequelize.query(query, {
+    type: QueryTypes.UPDATE,
+    replacements: { title, content, images },
+  });
+  res.redirect("/blog");
 };
 
 const deleteBlog = async (req, res) => {
@@ -27,12 +68,12 @@ const deleteBlog = async (req, res) => {
 };
 
 const addBlog = async (req, res) => {
+  const { title, content, images } = req.body;
   try {
-    const { title, content, images } = req.body;
-
-    const query = `INSERT INTO public."Blogs" (title, content, image) VALUES ( '${title}', '${content}', '${images}')`;
+    const query = `INSERT INTO public."Blogs" (title, content, image) VALUES ( :title, :content, :images)`;
     await sequelize.query(query, {
       type: QueryTypes.INSERT,
+      replacements: { title, content, images },
     });
 
     res.redirect("/blog");
@@ -42,32 +83,79 @@ const addBlog = async (req, res) => {
   }
 };
 
-const renderAddBlog = (req, res) => {
-  res.render("add-blog");
-};
-
-const getDetailBlogId = async (req, res) => {
-  res.render("detail-blog");
-};
-
-const getBlogId = async (req, res) => {
-  res.render("edit-blog");
-};
-
-const editBlogWithId = async (req, res) => {
-  res.redirect("/blog");
-};
-
+let arr = [];
 const renderMyproject = (req, res) => {
-  res.render("task/MyProject");
+  let getlocalStorage = JSON.parse(localStorage.getItem("project") || "[]");
+  if (arr == "") {
+    arr.push(...getlocalStorage);
+  }
+  res.render("task/MyProject", { data: getlocalStorage });
 };
 
 const postMyproject = (req, res) => {
-  res.render("/MyProject");
+  const { name, startDate, endDate, description, images } = req.body;
+  const { nodejs, reactjs, nextjs, typescript } = req.body;
+
+  let checkBox = [];
+  if (nodejs) {
+    checkBox.push(nodejs);
+  }
+  if (reactjs) {
+    checkBox.push(reactjs);
+  }
+  if (nextjs) {
+    checkBox.push(nextjs);
+  }
+  if (typescript) {
+    checkBox.push(typescript);
+  }
+
+  let data = {
+    author: "Papoy",
+    projectName: name,
+    startDate: startDate,
+    endDate: endDate,
+    description: description,
+    checkBox: checkBox,
+    images: images,
+  };
+  // let getlocalStorage = JSON.parse(localStorage.getItem("project") || "[]");
+  arr.push(data);
+  localStorage.setItem("project", JSON.stringify(arr));
+  res.render("task/MyProject", { data: arr });
+};
+
+const deleteMyProject = (req, res) => {
+  const { index } = req.params;
+  let getlocalStorage = JSON.parse(localStorage.getItem("project") || "[]");
+
+  getlocalStorage.splice(index, 1);
+  localStorage.setItem("project", JSON.stringify(getlocalStorage));
+  res.redirect("/MyProject");
 };
 
 const renderDetailProject = (req, res) => {
-  res.render("task/project-detail");
+  const index = req.params.index;
+  let getlocalStorage = JSON.parse(localStorage.getItem("project") || "[]");
+  let cb = getlocalStorage[index].checkBox;
+
+  let arrImg = [];
+  for (let i = 0; i < cb.length; i++) {
+    if (cb[i].includes("ReactJs")) {
+      arrImg.push("atom.png");
+    } else if (cb[i].includes("NodeJs")) {
+      arrImg.push("nodejs.png");
+    } else if (cb[i].includes("NextJs")) {
+      arrImg.push("nextjs.png");
+    } else if (cb[i].includes("TypeScript")) {
+      arrImg.push("typescript.png");
+    }
+  }
+
+  res.render("task/project-detail", {
+    data: getlocalStorage[index],
+    img: arrImg,
+  });
 };
 const contact = (req, res) => {
   res.render("contact");
@@ -90,6 +178,7 @@ module.exports = {
   deleteBlog,
   renderMyproject,
   postMyproject,
+  deleteMyProject,
   renderDetailProject,
   contact,
   testimonial,

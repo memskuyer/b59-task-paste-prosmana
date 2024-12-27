@@ -16,6 +16,7 @@ router.patch("/edit-blogs/:id", controllerPage.editBlogWithId);
 
 router.get("/MyProject", controllerPage.renderMyproject);
 router.post("/MyProject", controllerPage.postMyproject);
+router.delete("/deleteMyProject/:index", controllerPage.deleteMyProject);
 router.get("/project-detail/:index", controllerPage.renderDetailProject);
 
 router.get("/contact", controllerPage.contact);
