@@ -1,8 +1,13 @@
 const express = require("express");
 const path = require("path");
-const { formatDate, getRelativeTime } = require("./src/controller/timeFormat");
+const {
+  formatDate,
+  getRelativeTime,
+  formatDuration,
+} = require("./src/controller/timeFormat");
 const hbs = require("hbs");
 const routerPages = require("./src/Router/RouterIndex");
+const routermyProject = require("./src/Router/Routermyprojects");
 const methodOverride = require("method-override");
 const { LocalStorage } = require("node-localstorage");
 require("dotenv").config();
@@ -29,7 +34,9 @@ hbs.registerHelper("equal", (a, b) => {
 });
 hbs.registerHelper("formatDate", formatDate);
 hbs.registerHelper("times", getRelativeTime);
+hbs.registerHelper("duration", formatDuration);
 
+app.use("/", routermyProject);
 app.use("/", routerPages);
 
 app.listen(port, () => {

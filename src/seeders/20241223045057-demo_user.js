@@ -6,9 +6,9 @@ module.exports = {
     var profiles = [];
     for (let i = 0; i < 10; i++) {
       profiles.push({
-        title: `title${i}`,
+        title: `title Netflix${i}`,
         content: `Dev${i}`,
-        image: `facebook.jpg`,
+        image: `netflix.png`,
         createdAt: new Date(),
         updatedAt: new Date(),
       });

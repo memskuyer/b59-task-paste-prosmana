@@ -41,4 +41,16 @@ const getRelativeTime = (targetDate) => {
   }
 };
 
-module.exports = { formatDate, getRelativeTime };
+const formatDuration = (start, end) => {
+  let dateStart = new Date(start.replaceAll("-", "/"));
+  let dateend = new Date(end.replaceAll("-", "/"));
+
+  let duration =
+    dateend.getMonth() -
+    dateStart.getMonth() +
+    12 * (dateend.getFullYear() - dateStart.getFullYear());
+
+  return duration;
+};
+
+module.exports = { formatDate, getRelativeTime, formatDuration };

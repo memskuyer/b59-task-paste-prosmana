@@ -18,16 +18,16 @@
      {{> navbar currenPage = "blog" }}
     <main>
       <section class="blog-container">
-        <a href="add-blog">
-          <button style="margin-bottom: 10px;">
+        {{!-- <a href="add-blog"> --}}
+          <button style="margin-bottom: 10px;" onclick="ClickSwal()">
               +
           </button>
-        </a>
+        {{!-- </a> --}}
         <div class="blog-list" id="blogList">
           {{#each data }}
            <div class="blog-list-item">
             <div class="blog-image">
-              <img src="../assets/images/{{this.image}}" alt="{{this.image}}" />
+              <img src="/assets/images/{{this.image}}" alt="{{this.image}}" />
             </div>
             <div class="blog-content">
               <div class="btn-group">
@@ -61,5 +61,20 @@
     </main>
     {{!-- <script src="/javascript/blog.js"></script> --}}
     <script src="/javascript/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function ClickSwal(){
+        Swal.fire({
+            title: "Apakah Anda ingin menambahkan data baru?",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              window.location.href = '/add-blog'
+            }
+          });
+      }
+    </script>
   </body>
 </html>
